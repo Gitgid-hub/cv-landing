@@ -34,7 +34,11 @@ export default function Home() {
     {
       tag: "SKILLS",
       tagColor: "bg-[#0f2e1f] text-[#67f2a3]",
-      body: "Proficient in Python and R\nFluent English\nSpanish (B2)",
+      sections: [
+        { title: "Python & R", lines: [] },
+        { title: "English (Fluent)", lines: [] },
+        { title: "Spanish (B2)", lines: [] },
+      ],
     },
   ];
 
@@ -126,17 +130,22 @@ export default function Home() {
                 <div className="space-y-4">
                   {card.sections.map((section) => (
                     <div key={section.title} className="space-y-1">
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3
+                        className={`font-semibold text-white ${
+                          card.tag === "SKILLS" ? "text-base" : "text-lg"
+                        }`}
+                      >
                         {section.title}
                       </h3>
-                      {section.lines.map((line) => (
-                        <p
-                          key={`${section.title}-${line}`}
-                          className="text-sm leading-6 text-zinc-400"
-                        >
-                          {line}
-                        </p>
-                      ))}
+                      {section.lines.length > 0 &&
+                        section.lines.map((line) => (
+                          <p
+                            key={`${section.title}-${line}`}
+                            className="text-sm leading-6 text-zinc-400"
+                          >
+                            {line}
+                          </p>
+                        ))}
                     </div>
                   ))}
                 </div>
