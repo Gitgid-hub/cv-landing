@@ -8,7 +8,7 @@ export default function Home() {
       tag: "EDUCATION",
       tagColor: "bg-[#3b0f2b] text-[#e56aaa]",
       title: "B.Sc. in Biology, Minor in Cognitive Science — Hebrew University",
-      body: "GPA 93.5\nExchange semester — University of Navarra, Spain\n2023–Present",
+      body: "GPA 93.5\nExchange semester - University of Navarra, Spain\n2023–Present",
     },
     {
       tag: "EXPERIENCE",
@@ -16,7 +16,7 @@ export default function Home() {
       sections: [
         {
           title: "Data Analyst, Santa Inc",
-          lines: ["6 months", "2021-2022"],
+          lines: ["6 months", "2021–2022"],
         },
         {
           title: "Cook, Chakra Restaurant",
@@ -34,7 +34,6 @@ export default function Home() {
     {
       tag: "SKILLS",
       tagColor: "bg-[#0f2e1f] text-[#67f2a3]",
-      title: "Skills",
       body: "Proficient in Python and R\nFluent English\nSpanish (B2)",
     },
   ];
