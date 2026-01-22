@@ -72,7 +72,7 @@ export default function Home() {
   ];
 
   const fullText =
-    "Hi, I’m Gidon Greenblatt,\nCurrently completing my B.Sc at the Hebrew University of Jerusalem";
+    "Hi, I’m Gidon Greenblatt,\nCurrently completing a B.Sc at the Hebrew University of Jerusalem";
 
   const [typedText, setTypedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
