@@ -16,11 +16,20 @@ export default function Home() {
       sections: [
         {
           title: "Data Analyst, Santa Inc",
-          lines: ["6 months", "2021–2022"],
+          lines: [
+            "Post-launch product support",
+            "Product performance analysis",
+            "Collaborated with US-based teammates",
+            "2021–2022",
+          ],
         },
         {
           title: "Cook, Chakra Restaurant",
           lines: ["High-pressure service", "Fine dining", "2023–2025"],
+        },
+        {
+          title: "Assistant to Dr. Micah Goodman",
+          lines: ["Logistics and research support", "2021"],
         },
       ],
     },
@@ -28,8 +37,28 @@ export default function Home() {
       tag: "SERVICE",
       tagColor: "bg-[#3b2f0f] text-[#ffd166]",
       title: "IDF, 8200",
-      body:
-        "Team Lead, Foreign Relations Section  —  2019–2020\nIntelligence Analyst, Operations Room  —  2017–2019",
+      sections: [
+        {
+          title: "Team Lead",
+          lines: [
+            "Led a six-person intelligence team",
+            "Streamlined processes in a high-intensity environment under tight deadlines",
+            "2019–2020",
+          ],
+        },
+        {
+          title: "Intelligence Analyst",
+          lines: [
+            "Worked in a multidisciplinary team and a 24/7 operations center",
+            "Processed and relayed critical real-time intelligence for national security",
+            "2017–2019",
+          ],
+        },
+        {
+          title: "Commander’s Award for Excellence — Independence Day",
+          lines: ["2019"],
+        },
+      ],
     },
     {
       tag: "SKILLS",
@@ -112,13 +141,13 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <section className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 xl:grid-cols-4">
           {cards.map((card, index) => (
             <article
               key={`${card.tag}-${index}`}
-              className={`group flex min-h-[210px] flex-col justify-start gap-3 rounded-2xl border border-white/10 bg-black/30 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:border-white/20 ${
+              className={`group flex flex-col justify-start gap-3 rounded-2xl border border-white/10 bg-black/30 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:border-white/20 ${
                 typingDone ? "card-fade-in" : "opacity-0 translate-y-2"
-              }`}
+              } ${card.tag === "EDUCATION" || card.tag === "SKILLS" ? "" : "min-h-[210px]"}`}
               style={{ "--delay": `${index * 120}ms` } as React.CSSProperties}
             >
               <span
@@ -128,6 +157,11 @@ export default function Home() {
               </span>
               {"sections" in card && card.sections ? (
                 <div className="space-y-4">
+                  {card.title && (
+                    <h3 className="text-lg font-semibold text-white">
+                      {card.title}
+                    </h3>
+                  )}
                   {card.sections.map((section) => (
                     <div key={section.title} className="space-y-1">
                       <h3
