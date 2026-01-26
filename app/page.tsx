@@ -8,7 +8,7 @@ export default function Home() {
       tag: "EDUCATION",
       tagColor: "bg-[#3b0f2b] text-[#e56aaa]",
       title: "B.Sc. in Biology, Minor in Cognitive Science — Hebrew University",
-      body: "GPA 93.5\nExchange semester - University of Navarra, Spain\n2023–Present",
+      body: "2023–Present\nGPA 93.5\nExchange semester - University of Navarra, Spain",
     },
     {
       tag: "EXPERIENCE",
@@ -17,19 +17,19 @@ export default function Home() {
         {
           title: "Data Analyst, Santa Inc",
           lines: [
+            "2021–2022",
             "Post-launch product support",
             "Product performance analysis",
             "Collaborated with US-based teammates",
-            "2021–2022",
           ],
         },
         {
           title: "Cook, Chakra Restaurant",
-          lines: ["High-pressure service", "Fine dining", "2023–2025"],
+          lines: ["2023–2025", "High-pressure service", "Fine dining"],
         },
         {
           title: "Assistant to Dr. Micah Goodman",
-          lines: ["Logistics and research support", "2021"],
+          lines: ["2021", "Logistics and research support"],
         },
       ],
     },
@@ -41,17 +41,17 @@ export default function Home() {
         {
           title: "Team Lead",
           lines: [
+            "2019–2020",
             "Led a six-person intelligence team",
             "Streamlined processes in a high-intensity environment under tight deadlines",
-            "2019–2020",
           ],
         },
         {
           title: "Intelligence Analyst",
           lines: [
+            "2017–2019",
             "Worked in a multidisciplinary team and a 24/7 operations center",
             "Processed and relayed critical real-time intelligence for national security",
-            "2017–2019",
           ],
         },
         {
