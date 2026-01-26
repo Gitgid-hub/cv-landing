@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [photoExpanded, setPhotoExpanded] = useState(false);
   const cards = [
     {
       tag: "EDUCATION",
@@ -15,7 +16,7 @@ export default function Home() {
       tagColor: "bg-[#122040] text-[#7fb2ff]",
       sections: [
         {
-          title: "Data Analyst, Santa Inc",
+          title: "Product Manager, Santa Inc",
           lines: [
             "2021–2022",
             "Post-launch product support",
@@ -24,7 +25,7 @@ export default function Home() {
           ],
         },
         {
-          title: "Cook, Chakra Restaurant",
+          title: "Cook, Chakra",
           lines: ["2023–2025", "High-pressure service", "Fine dining"],
         },
         {
@@ -121,7 +122,24 @@ export default function Home() {
 
   return (
     <div className="grid-bg min-h-screen text-zinc-100">
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-8 pb-16 pt-14">
+      <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-8 pb-16 pt-14">
+        <button
+          type="button"
+          className={`portrait-wrap ${photoExpanded ? "portrait-expanded" : ""} ${
+            typingDone ? "card-fade-in" : "opacity-0 translate-y-2"
+          }`}
+          style={{ "--delay": "120ms" } as React.CSSProperties}
+          onClick={() => setPhotoExpanded(true)}
+          onMouseLeave={() => setPhotoExpanded(false)}
+          aria-label="Expand profile photo"
+        >
+          <img
+            src="/profile.png"
+            alt="Gidon Greenblatt"
+            className="portrait-img"
+          />
+          <span className="portrait-fade" aria-hidden="true" />
+        </button>
         <header className="max-w-xl space-y-2">
           <p className="text-3xl font-semibold leading-tight text-white">
             {lines.map((line, i) => (
