@@ -2,79 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+import { cards, contactLine, headline } from "./data/cv";
+
 export default function Home() {
   const [photoExpanded, setPhotoExpanded] = useState(false);
-  const cards = [
-    {
-      tag: "EDUCATION",
-      tagColor: "bg-[#3b0f2b] text-[#e56aaa]",
-      title: "B.Sc. in Biology, Minor in Cognitive Science — Hebrew University",
-      body: "2023–Present\nGPA 93.5\nExchange semester - University of Navarra, Spain",
-    },
-    {
-      tag: "EXPERIENCE",
-      tagColor: "bg-[#122040] text-[#7fb2ff]",
-      sections: [
-        {
-          title: "Product Manager, Santa Inc",
-          lines: [
-            "2021–2022",
-            "Post-launch product support",
-            "Product performance analysis",
-            "Collaborated with US-based teammates",
-          ],
-        },
-        {
-          title: "Cook, Chakra",
-          lines: ["2023–2025", "High-pressure service", "Fine dining"],
-        },
-        {
-          title: "Assistant to Dr. Micah Goodman",
-          lines: ["2021", "Logistics and research support"],
-        },
-      ],
-    },
-    {
-      tag: "SERVICE",
-      tagColor: "bg-[#3b2f0f] text-[#ffd166]",
-      title: "IDF, 8200",
-      sections: [
-        {
-          title: "Team Lead",
-          lines: [
-            "2019–2020",
-            "Led a six-person intelligence team",
-            "Streamlined processes in a high-intensity environment under tight deadlines",
-          ],
-        },
-        {
-          title: "Intelligence Analyst",
-          lines: [
-            "2017–2019",
-            "Worked in a multidisciplinary team and a 24/7 operations center",
-            "Processed and relayed critical real-time intelligence for national security",
-          ],
-        },
-        {
-          title: "Commander’s Award for Excellence — Independence Day",
-          lines: ["2019"],
-        },
-      ],
-    },
-    {
-      tag: "SKILLS",
-      tagColor: "bg-[#0f2e1f] text-[#67f2a3]",
-      sections: [
-        { title: "Python & R", lines: [] },
-        { title: "Cursor AI", lines: [] },
-        { title: "English (Fluent)", lines: [] },
-        { title: "Spanish (B2)", lines: [] },
-      ],
-    },
-  ];
-
-  const fullText =
-    "Hi, I’m Gidon Greenblatt,\nCurrently completing a B.Sc at the Hebrew University of Jerusalem";
+  const fullText = headline;
 
   const [typedText, setTypedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
@@ -122,27 +54,27 @@ export default function Home() {
 
   return (
     <div className="grid-bg min-h-screen text-zinc-100">
-      <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-8 pb-16 pt-14">
+      <div
+        className={`portrait-shell ${photoExpanded ? "portrait-expanded" : ""}`}
+        aria-label="Profile photo"
+        onMouseEnter={() => setPhotoExpanded(true)}
+        onMouseLeave={() => setPhotoExpanded(false)}
+      >
         <div
-          className={`portrait-shell ${photoExpanded ? "portrait-expanded" : ""}`}
-          aria-label="Profile photo"
-          onMouseEnter={() => setPhotoExpanded(true)}
-          onMouseLeave={() => setPhotoExpanded(false)}
+          className={`portrait-wrap ${
+            typingDone ? "card-fade-in" : "opacity-0 translate-y-2"
+          }`}
+          style={{ "--delay": "120ms" } as React.CSSProperties}
         >
-          <div
-            className={`portrait-wrap ${
-              typingDone ? "card-fade-in" : "opacity-0 translate-y-2"
-            }`}
-            style={{ "--delay": "120ms" } as React.CSSProperties}
-          >
-            <img
-              src="/profile.png"
-              alt="Gidon Greenblatt"
-              className="portrait-img"
-            />
-            <span className="portrait-fade" aria-hidden="true" />
-          </div>
+          <img
+            src="/profile.png"
+            alt="Gidon Greenblatt"
+            className="portrait-img"
+          />
+          <span className="portrait-fade" aria-hidden="true" />
         </div>
+      </div>
+      <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-8 pb-16 pt-14">
         <header className="max-w-xl space-y-2">
           <p className="text-3xl font-semibold leading-tight text-white">
             {lines.map((line, i) => (
@@ -159,7 +91,7 @@ export default function Home() {
             }`}
             style={{ "--delay": "0ms" } as React.CSSProperties}
           >
-            gidon.greenblatt@gmail.com · 054-7344557
+            {contactLine}
           </div>
         </header>
 
