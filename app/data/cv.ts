@@ -65,7 +65,7 @@ export const cards = [
     tagColor: "bg-[#0f2e1f] text-[#67f2a3]",
     sections: [
       { title: "Python & R", lines: [] },
-      { title: "Cursor AI", lines: [] },
+      { title: "Cursor", lines: [] },
       { title: "English (Fluent)", lines: [] },
       { title: "Spanish (B2)", lines: [] },
     ],

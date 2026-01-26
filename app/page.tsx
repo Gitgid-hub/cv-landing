@@ -6,6 +6,7 @@ import { cards, contactLine, headline } from "./data/cv";
 
 export default function Home() {
   const [photoExpanded, setPhotoExpanded] = useState(false);
+  const [printMode, setPrintMode] = useState(false);
   const fullText = headline;
 
   const [typedText, setTypedText] = useState("");
@@ -13,6 +14,23 @@ export default function Home() {
   const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const isPrint = window.location.search.includes("print=1");
+    if (isPrint) {
+      setPrintMode(true);
+      setTypedText(fullText);
+      setTypingDone(true);
+    }
+  }, [fullText]);
+
+  useEffect(() => {
+    if (printMode) {
+      return;
+    }
+
     let index = 0;
     const interval = setInterval(() => {
       index += 1;
@@ -24,10 +42,15 @@ export default function Home() {
     }, 35);
 
     return () => clearInterval(interval);
-  }, [fullText]);
+  }, [fullText, printMode]);
 
   useEffect(() => {
     // Blink while typing
+    if (printMode) {
+      setCursorVisible(false);
+      return;
+    }
+
     if (!typingDone) {
       const id = setInterval(() => {
         setCursorVisible((v) => !v);
@@ -48,12 +71,15 @@ export default function Home() {
     }, 500);
 
     return () => clearInterval(id);
-  }, [typingDone]);
+  }, [typingDone, printMode]);
 
   const lines = typedText.split("\n");
 
   return (
-    <div className="grid-bg min-h-screen text-zinc-100">
+    <div
+      className="grid-bg min-h-screen text-zinc-100"
+      data-typing-done={typingDone}
+    >
       <div
         className={`portrait-shell ${photoExpanded ? "portrait-expanded" : ""}`}
         aria-label="Profile photo"
@@ -75,8 +101,8 @@ export default function Home() {
         </div>
       </div>
       <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-8 pb-16 pt-14">
-        <header className="max-w-xl space-y-2">
-          <p className="text-3xl font-semibold leading-tight text-white">
+        <header className="hero-header max-w-xl space-y-2">
+          <p className="hero-title text-3xl font-semibold leading-tight text-white">
             {lines.map((line, i) => (
               <span key={i}>
                 {line}
@@ -95,13 +121,25 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <section className="print-grid grid grid-cols-1 items-start gap-6 md:grid-cols-2 xl:grid-cols-4">
           {cards.map((card, index) => (
             <article
               key={`${card.tag}-${index}`}
               className={`group flex flex-col justify-start gap-3 rounded-2xl border border-white/10 bg-black/30 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:border-white/20 ${
                 typingDone ? "card-fade-in" : "opacity-0 translate-y-2"
-              } ${card.tag === "EDUCATION" || card.tag === "SKILLS" ? "" : "min-h-[210px]"}`}
+              } ${card.tag === "EDUCATION" || card.tag === "SKILLS" ? "" : "min-h-[210px]"} ${
+                card.tag === "SERVICE" ? "print-break-before" : ""
+              } ${
+                card.tag === "EDUCATION"
+                  ? "print-edu"
+                  : card.tag === "EXPERIENCE"
+                    ? "print-exp"
+                    : card.tag === "SERVICE"
+                      ? "print-service"
+                      : card.tag === "SKILLS"
+                        ? "print-skills"
+                        : ""
+              } ${card.tag === "SKILLS" ? "print-skills-left" : ""}`}
               style={{ "--delay": `${index * 120}ms` } as React.CSSProperties}
             >
               <span
@@ -117,12 +155,13 @@ export default function Home() {
                     </h3>
                   )}
                   {card.sections.map((section) => (
-                    <div key={section.title} className="space-y-1">
-                      <h3
-                        className={`font-semibold text-white ${
-                          card.tag === "SKILLS" ? "text-base" : "text-lg"
-                        }`}
-                      >
+                    <div
+                      key={section.title}
+                      className={`space-y-1 ${
+                        section.title === "Cook, Chakra" ? "print-hide" : ""
+                      }`}
+                    >
+                      <h3 className="text-lg font-semibold text-white">
                         {section.title}
                       </h3>
                       {section.lines.length > 0 &&

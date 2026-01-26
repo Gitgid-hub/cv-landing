@@ -114,6 +114,152 @@ body {
   }
 }
 
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #070707 !important;
+    color: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .grid-bg {
+    background-color: #070707 !important;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 140px 140px;
+    background-position: center;
+  }
+
+  .grid-bg::before,
+  .grid-bg::after {
+    display: none !important;
+  }
+
+  .card-fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .opacity-0 {
+    opacity: 1 !important;
+  }
+
+  .translate-y-2 {
+    transform: none !important;
+  }
+
+  .print-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row dense;
+    gap: 8px;
+  }
+
+  .print-grid > article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .portrait-shell {
+    position: absolute;
+    top: 34px;
+    right: 28px;
+  }
+
+  .hero-header {
+    max-width: none !important;
+    margin-bottom: 10px !important;
+  }
+
+  .hero-title {
+    font-size: 22px !important;
+    line-height: 1.15 !important;
+    padding-right: 150px;
+  }
+
+  .print-grid > article {
+    padding: 14px !important;
+  }
+
+  .print-grid h3 {
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+  }
+
+  .print-grid p {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  .print-grid span {
+    font-size: 9px !important;
+  }
+
+  .print-service .space-y-4 {
+    gap: 10px !important;
+  }
+
+  .print-service .space-y-1 {
+    gap: 4px !important;
+  }
+
+  .print-grid .space-y-4 {
+    gap: 8px !important;
+  }
+
+  .print-grid .space-y-1 {
+    gap: 4px !important;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-edu {
+    grid-column: 1 / -1;
+  }
+
+  .print-exp {
+    grid-column: auto;
+  }
+
+  .print-service {
+    grid-column: auto;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .print-skills {
+    grid-column: 1 / -1;
+  }
+
+  .print-skills-left {
+    grid-column: 1 / -1;
+  }
+
+  .print-break-before {
+    break-before: auto;
+    page-break-before: auto;
+  }
+}
+
 @keyframes blink {
   0%,
   50% {
