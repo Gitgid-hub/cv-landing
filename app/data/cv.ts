@@ -24,8 +24,12 @@ export const cards = [
         ],
       },
       {
-        title: "Cook, Chakra",
-        lines: ["2023–2025", "High-pressure service", "Fine dining"],
+        title: "Chef, Chakra",
+        lines: [
+          "2023–2025",
+          "High-pressure service",
+          "Known for meticulous attention to detail and consistent high-quality execution.",
+        ],
       },
       {
         title: "Assistant to Dr. Micah Goodman",
